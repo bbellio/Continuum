@@ -17,6 +17,9 @@
 		FCBE131B2356571E00781B10 /* AddPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBE131A2356571E00781B10 /* AddPostTableViewController.swift */; };
 		FCBE131F2356574F00781B10 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCBE131E2356574F00781B10 /* CloudKit.framework */; };
 		FCBE1322235657E500781B10 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBE1321235657E500781B10 /* Post.swift */; };
+		FCBE132423565C5000781B10 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBE132323565C5000781B10 /* PostController.swift */; };
+		FCBE13272356621A00781B10 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBE13262356621A00781B10 /* PostTableViewCell.swift */; };
+		FCBE132A235670BB00781B10 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBE1329235670BB00781B10 /* DateFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +36,9 @@
 		FCBE131C2356574300781B10 /* Continuum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Continuum.entitlements; sourceTree = "<group>"; };
 		FCBE131E2356574F00781B10 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		FCBE1321235657E500781B10 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		FCBE132323565C5000781B10 /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
+		FCBE13262356621A00781B10 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		FCBE1329235670BB00781B10 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +99,7 @@
 			children = (
 				FCBE1314235655F600781B10 /* Model Controllers */,
 				FCBE1315235655FC00781B10 /* View Controllers */,
+				FCBE1325235661F200781B10 /* Views */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -100,6 +107,7 @@
 		FCBE1314235655F600781B10 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FCBE132323565C5000781B10 /* PostController.swift */,
 			);
 			name = "Model Controllers";
 			sourceTree = "<group>";
@@ -126,8 +134,25 @@
 			isa = PBXGroup;
 			children = (
 				FCBE1321235657E500781B10 /* Post.swift */,
+				FCBE1328235670A100781B10 /* Formatting */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		FCBE1325235661F200781B10 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FCBE13262356621A00781B10 /* PostTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		FCBE1328235670A100781B10 /* Formatting */ = {
+			isa = PBXGroup;
+			children = (
+				FCBE1329235670BB00781B10 /* DateFormatter.swift */,
+			);
+			name = Formatting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,10 +226,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCBE132A235670BB00781B10 /* DateFormatter.swift in Sources */,
 				FCBE13172356563100781B10 /* PostListTableViewController.swift in Sources */,
 				FCBE131B2356571E00781B10 /* AddPostTableViewController.swift in Sources */,
 				FCBE12FF235654EE00781B10 /* AppDelegate.swift in Sources */,
+				FCBE13272356621A00781B10 /* PostTableViewCell.swift in Sources */,
 				FCBE1322235657E500781B10 /* Post.swift in Sources */,
+				FCBE132423565C5000781B10 /* PostController.swift in Sources */,
 				FCBE1319235656B200781B10 /* PostDetailTableViewController.swift in Sources */,
 				FCBE1301235654EE00781B10 /* SceneDelegate.swift in Sources */,
 			);

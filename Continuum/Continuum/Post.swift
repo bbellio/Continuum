@@ -12,7 +12,7 @@ class Post {
     var photoData: Data?
     let timestamp: Date
     var caption: String
-    let comments: [Comment]
+    var comments: [Comment] 
     var photo: UIImage? {
         get {
             guard let photoData = photoData else { return nil }
