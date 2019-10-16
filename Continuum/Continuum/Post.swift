@@ -41,3 +41,25 @@ class Comment {
         self.post = post
     }
 } // End of class
+
+// MARK: - Class Extensions
+extension Post: SearchableProtocol {
+    func matches(searchTerm: String) -> Bool {
+        if caption.lowercased().contains(searchTerm) {
+            return true
+        } else {
+            for comment in comments {
+                if comment.matches(searchTerm: searchTerm) {
+                    return true
+                }
+            }
+        }
+        return false
+    } // End of function
+} // End of extension
+
+extension Comment: SearchableProtocol {
+    func matches(searchTerm: String) -> Bool {
+        return text.lowercased().contains(searchTerm)
+    }
+}

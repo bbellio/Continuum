@@ -12,6 +12,7 @@ class PostDetailTableViewController: UITableViewController {
 // MARK: - Global Variables
     var post: Post? {
         didSet {
+            loadViewIfNeeded()
             updateViews()
         }
     }
@@ -30,6 +31,11 @@ class PostDetailTableViewController: UITableViewController {
     }
     
     @IBAction func shareButtonTapped(_ sender: Any) {
+        guard let caption = post?.caption,
+            let image = post?.photo
+            else { return }
+        let activityController = UIActivityViewController(activityItems: [caption, image] , applicationActivities: nil)
+        present(activityController, animated: true)
     }
     
     @IBAction func followPostButtonTapped(_ sender: Any) {
@@ -37,7 +43,9 @@ class PostDetailTableViewController: UITableViewController {
     
 // MARK: - Custom Functions
     func updateViews() {
-        postImageView.image = post?.photo
+        guard let post = post else { return }
+        postImageView.image = post.photo
+        self.title = post.caption
     }
     
     func presentCommentAlert() {

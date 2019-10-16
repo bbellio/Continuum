@@ -42,25 +42,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="278"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xW5-WJ-9X5">
+                                                <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xc3-A4-2Uw">
                                                     <rect key="frame" x="20" y="11" width="374" height="256"/>
-                                                </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qN6-dJ-ujW">
-                                                    <rect key="frame" x="20" y="11" width="374" height="256"/>
-                                                    <state key="normal" title="Select Image"/>
-                                                </button>
+                                                    <connections>
+                                                        <segue destination="8i2-J9-lRd" kind="embed" identifier="toImageContainerVC" id="kg9-dC-n0P"/>
+                                                    </connections>
+                                                </containerView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="qN6-dJ-ujW" firstAttribute="leading" secondItem="xW5-WJ-9X5" secondAttribute="leading" id="3fA-AC-fJv"/>
-                                                <constraint firstItem="qN6-dJ-ujW" firstAttribute="height" secondItem="xW5-WJ-9X5" secondAttribute="height" id="6lM-9o-Rwi"/>
-                                                <constraint firstItem="qN6-dJ-ujW" firstAttribute="trailing" secondItem="xW5-WJ-9X5" secondAttribute="trailing" id="FIX-C8-GMg"/>
-                                                <constraint firstItem="xW5-WJ-9X5" firstAttribute="top" secondItem="p2D-of-YeN" secondAttribute="topMargin" id="FjP-sK-Gmu"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="xW5-WJ-9X5" secondAttribute="trailing" id="OCh-vB-WoO"/>
-                                                <constraint firstItem="xW5-WJ-9X5" firstAttribute="leading" secondItem="p2D-of-YeN" secondAttribute="leadingMargin" id="Ot0-KY-DQU"/>
-                                                <constraint firstItem="qN6-dJ-ujW" firstAttribute="bottom" secondItem="xW5-WJ-9X5" secondAttribute="bottom" id="aUC-Ot-wuh"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="xW5-WJ-9X5" secondAttribute="bottom" id="bdi-3m-hlN"/>
-                                                <constraint firstItem="qN6-dJ-ujW" firstAttribute="top" secondItem="xW5-WJ-9X5" secondAttribute="top" id="cUE-0Q-R99"/>
-                                                <constraint firstItem="qN6-dJ-ujW" firstAttribute="width" secondItem="xW5-WJ-9X5" secondAttribute="width" id="q1l-nO-JHe"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Xc3-A4-2Uw" secondAttribute="trailing" id="C8m-4k-H7K"/>
+                                                <constraint firstItem="Xc3-A4-2Uw" firstAttribute="top" secondItem="p2D-of-YeN" secondAttribute="topMargin" id="Ixy-7G-4SS"/>
+                                                <constraint firstItem="Xc3-A4-2Uw" firstAttribute="leading" secondItem="p2D-of-YeN" secondAttribute="leadingMargin" id="Nm2-R0-o8P"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Xc3-A4-2Uw" secondAttribute="bottom" id="T7c-08-kZl"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -147,9 +140,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="Haq-sM-Y7l">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="452" id="pTG-eU-OUT" customClass="PostTableViewCell" customModule="Continuum" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="452"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="452"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pTG-eU-OUT" id="v7P-G8-5zq">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="452"/>
@@ -202,6 +200,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Posts" id="cfV-2V-Pcg"/>
+                    <connections>
+                        <outlet property="searchBar" destination="Haq-sM-Y7l" id="R9L-sr-O1L"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nbf-yi-47p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -344,6 +345,47 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xu7-U9-GAr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="624.63768115942037" y="485.49107142857139"/>
+        </scene>
+        <!--Photo Selector View Controller-->
+        <scene sceneID="GF0-dO-sus">
+            <objects>
+                <viewController id="8i2-J9-lRd" customClass="PhotoSelectorViewController" customModule="Continuum" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Chx-L1-q95">
+                        <rect key="frame" x="0.0" y="0.0" width="374" height="256"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xW5-WJ-9X5">
+                                <rect key="frame" x="0.0" y="0.0" width="374" height="256"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qN6-dJ-ujW">
+                                <rect key="frame" x="0.0" y="0.0" width="374" height="256"/>
+                                <state key="normal" title="Select Image"/>
+                                <connections>
+                                    <action selector="selectImageButtonTapped:" destination="8i2-J9-lRd" eventType="touchUpInside" id="b6M-0V-Gh9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="xW5-WJ-9X5" secondAttribute="trailing" constant="-16" id="2JP-ej-dEG"/>
+                            <constraint firstItem="qN6-dJ-ujW" firstAttribute="trailing" secondItem="xW5-WJ-9X5" secondAttribute="trailing" id="8Es-hb-bcQ"/>
+                            <constraint firstItem="qN6-dJ-ujW" firstAttribute="bottom" secondItem="xW5-WJ-9X5" secondAttribute="bottom" id="P58-BL-AJF"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="xW5-WJ-9X5" secondAttribute="bottom" id="Wrx-Z9-Hke"/>
+                            <constraint firstItem="qN6-dJ-ujW" firstAttribute="leading" secondItem="xW5-WJ-9X5" secondAttribute="leading" id="bca-bP-oiO"/>
+                            <constraint firstItem="xW5-WJ-9X5" firstAttribute="top" secondItem="Chx-L1-q95" secondAttribute="topMargin" constant="-44" id="eGA-J1-lIb"/>
+                            <constraint firstItem="qN6-dJ-ujW" firstAttribute="top" secondItem="xW5-WJ-9X5" secondAttribute="top" id="i9w-ZY-gRF"/>
+                            <constraint firstItem="xW5-WJ-9X5" firstAttribute="leading" secondItem="Chx-L1-q95" secondAttribute="leadingMargin" constant="-16" id="mRp-CM-aHb"/>
+                        </constraints>
+                    </view>
+                    <size key="freeformSize" width="374" height="256"/>
+                    <connections>
+                        <outlet property="imageView" destination="xW5-WJ-9X5" id="yFb-WZ-1CA"/>
+                        <outlet property="selectImageButton" destination="qN6-dJ-ujW" id="gsz-6B-CHG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mIN-Mp-sX1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2417" y="485"/>
         </scene>
     </scenes>
 </document>
