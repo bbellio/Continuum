@@ -28,6 +28,13 @@ class PostListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
+        performPostSync { (success) in
+            if success {
+                print("Succesfully synced posts")
+            } else {
+                print("Error fetching posts")
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,7 +42,7 @@ class PostListTableViewController: UITableViewController {
         tableView.reloadData()
     }
 
-    // MARK: - Table view data source
+// MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
@@ -47,42 +54,6 @@ class PostListTableViewController: UITableViewController {
         return cell
     }
 
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-    
 // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPostDetailVC" {
@@ -92,6 +63,18 @@ class PostListTableViewController: UITableViewController {
             destination.post = post
         } 
     }
+    
+// MARK: - Custom Functions
+    func performPostSync(completion: @escaping (_ success: Bool) -> Void) {
+        PostController.sharedInstance.fetchPosts { (posts) in
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                print("Successfully performed fetch posts method")
+                completion(true)
+            }
+        }
+    }
+    
 } // End of class
 
 // MARK: - Class Extensions

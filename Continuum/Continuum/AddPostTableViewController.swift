@@ -30,9 +30,14 @@ class AddPostTableViewController: UITableViewController {
         guard let photo = selectedImage,
             let text = captionTextField.text
             else { return }
-        PostController.sharedInstance.createPostWith(image: photo, caption: text) { (post) in }
-        // Moves selected tab image
-        self.tabBarController?.selectedIndex = 0
+        PostController.sharedInstance.createPostWith(image: photo, caption: text) { (post) in
+            if post != nil {
+                DispatchQueue.main.async {
+                    // Moves selected tab image
+                    self.tabBarController?.selectedIndex = 0
+                }
+            }
+        }
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {

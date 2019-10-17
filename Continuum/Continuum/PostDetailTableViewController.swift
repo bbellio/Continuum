@@ -9,7 +9,7 @@
 import UIKit
 
 class PostDetailTableViewController: UITableViewController {
-// MARK: - Global Variables
+    // MARK: - Global Variables
     var post: Post? {
         didSet {
             loadViewIfNeeded()
@@ -17,15 +17,16 @@ class PostDetailTableViewController: UITableViewController {
         }
     }
     
-// MARK: - Outlets
+    // MARK: - Outlets
     @IBOutlet weak var postImageView: UIImageView!
     
-// MARK: - Life Cycle
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        performCommentSync()
     }
     
-// MARK: - Actions
+    // MARK: - Actions
     @IBAction func commentButtonTapped(_ sender: Any) {
         presentCommentAlert()
     }
@@ -41,7 +42,7 @@ class PostDetailTableViewController: UITableViewController {
     @IBAction func followPostButtonTapped(_ sender: Any) {
     }
     
-// MARK: - Custom Functions
+    // MARK: - Custom Functions
     func updateViews() {
         guard let post = post else { return }
         postImageView.image = post.photo
@@ -62,21 +63,36 @@ class PostDetailTableViewController: UITableViewController {
                 let post = self.post
                 else { return }
             PostController.sharedInstance.addComment(text: text, post: post) { (comment) in
-//                post.comments.append(comment)
+                guard let comment = comment else { return }
+                DispatchQueue.main.async {
+                    post.comments.append(comment)
+                    self.tableView.reloadData()
+                }
             }
-            self.tableView.reloadData()
         }
         alertController.addAction(cancelAction)
         alertController.addAction(commentAction)
         present(alertController, animated: true)
     } // End of function
     
+    func performCommentSync() {
+        guard let post = post else { return }
+        PostController.sharedInstance.fetchComments(for: post) { (comments) in
+            if comments != nil {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    print("Successfully fetched comments")
+                }
+            }
+        }
+    }
+    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let post = post else { return 0 }
         return post.comments.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath)
         let comment = post?.comments[indexPath.row]
